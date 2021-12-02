@@ -2,6 +2,7 @@ const {
   getNotesList,
   validKeys,
   writeNotesToFile,
+  identifyNoteId,
 } = require("../../utility/util");
 const { v4: uuidv4 } = require("uuid");
 
@@ -29,7 +30,7 @@ const addNewNote = (req, res) => {
 
     //check if that note exists in the database
     const doesNotExist = notesList.every((each) => {
-      return each.id != newNote.id;
+      return each.title != newNote.title;
     });
 
     if (doesNotExist) {
@@ -46,10 +47,25 @@ const addNewNote = (req, res) => {
     });
 };
 
-module.exports = { addNewNote, getNotes };
+const deleteNote = (req, res) => {
+  const { id } = req.params;
 
-//   if (!payload.note) {
-//     return res
-//       .status(400)
-//       .send({ error: `This note (${payload.note}) cannot be found` });
-//   }
+  const noteList = getNotesList();
+
+  const getNoteById = identifyNoteId(noteList, id);
+
+  if (!getNoteById)
+    return res
+      .status(404)
+      .json({ message: `No book with an id of ${id} exists` });
+
+  const newNotesList = noteList.filter((each) => {
+    return each.id !== id;
+  });
+
+  writeNotesToFile(newNotesList);
+
+  res.send(newNotesList);
+};
+
+module.exports = { addNewNote, getNotes, deleteNote };
