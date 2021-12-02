@@ -2,4 +2,8 @@ const addNewNote = (req, res) => {
   res.send("dfg");
 };
 
-module.exports = { addNewNote };
+const getNotes = (req, res) => {
+  res.send("erg");
+};
+
+module.exports = { addNewNote, getNotes };
