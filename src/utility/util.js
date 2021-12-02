@@ -1,3 +1,4 @@
+const { text } = require("express");
 const fs = require("fs");
 const path = require("path");
 
@@ -14,6 +15,14 @@ const getNotesList = () => {
   return notes;
 };
 
+const identifyNoteId = (notesDbArray, id) => {
+  return notesDbArray.find((each) => {
+    return each.id == id;
+  });
+};
+
+const validKeys = ["title", "text"];
+
 const writeNotesToFile = (data) => {
   fs.writeFileSync(
     path.join(__dirname, "../../db/db.json"),
@@ -21,4 +30,4 @@ const writeNotesToFile = (data) => {
   );
 };
 
-module.exports = { getNotesList, writeNotesToFile };
+module.exports = { getNotesList, writeNotesToFile, identifyNoteId, validKeys };
