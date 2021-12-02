@@ -8,7 +8,8 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, "../public")));
 
-//middleware
+app.use(express.json({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 app.use(routes);
 
