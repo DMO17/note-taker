@@ -1,13 +1,8 @@
 const { Router } = require("express");
-const { addNewNote, getNotes, deleteNote } = require("../../controller/api");
-const { renderHomePage, renderNotesPage } = require("../../controller/view");
+const finalPath = require("./final-path");
 
 const router = Router();
 
-router.post("/notes", addNewNote);
-
-router.get("/notes", getNotes);
-
-router.get("/notes/:id", deleteNote);
+router.use("/notes", finalPath);
 
 module.exports = router;

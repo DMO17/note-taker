@@ -50,9 +50,13 @@ const addNewNote = (req, res) => {
 const deleteNote = (req, res) => {
   const { id } = req.params;
 
+  console.log(id);
+
   const noteList = getNotesList();
 
-  const getNoteById = identifyNoteId(noteList, id);
+  const getNoteById = noteList.find((each) => {
+    return each.id == id;
+  });
 
   if (!getNoteById)
     return res
