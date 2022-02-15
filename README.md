@@ -6,7 +6,7 @@ This web application called Note-Taker can be used to write and save notes. his 
 
 ## Links
 
-To see the full Deployed Heroku link <a href='https://drive.google.com/file/d/1wB6xwaIL2Ra1J6YIZxavdqfMgsExmtCN/view?usp=sharing'>click here </a>
+To see the full Deployed Heroku link <a href='https://murmuring-basin-33128.herokuapp.com/notes'>click here </a>
 
 ## Video :
 
